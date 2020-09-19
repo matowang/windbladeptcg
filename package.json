@@ -8,9 +8,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "axios": "^0.20.0",
     "mongodb": "^3.6.2",
     "next": "9.5.3",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-infinite-scroll-component": "^5.1.0"
+  },
+  "devDependencies": {
+    "eslint-plugin-react-hooks": "^4.1.2"
   }
 }
