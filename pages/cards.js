@@ -1,4 +1,3 @@
-import InfiniteScroll from 'react-infinite-scroll-component';
 import { useState, useRef, useCallback, useEffect } from 'react';
 
 const Cards = () => {
@@ -23,7 +22,8 @@ const Cards = () => {
     async function fetchCards() {
         console.log("fetchh");
         setLoading(true);
-        const res = await fetch(`http://ptcgexpressapi-env.eba-9ynt9yst.ap-northeast-2.elasticbeanstalk.com/cards?page=${page}`, {
+        console.log(process.env.NEXT_PUBLIC_PTCG_API_URL);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_PTCG_API_URL}cards?page=${page}`, {
             method: 'GET',
         });
         const data = await res.json();
@@ -38,8 +38,8 @@ const Cards = () => {
     return (
         <div>{cards.map((card, i) =>
             i === cards.length - 1 ?
-                <h2 ref={lastCardRef} key={card._id} >{card.name}</h2> :
-                <h2 key={card._id} >{card.name}</h2>
+                <div key={card._id} ref={lastCardRef}><Card {...card} /></div> :
+                <Card key={card._id} {...card} />
         )}
             {loading && <h4>loading...</h4>}
         </div>
@@ -47,6 +47,13 @@ const Cards = () => {
 }
 
 export default Cards;
+
+const Card = ({ imageUrl, name }) => (
+    <article>
+        <h2>{name}</h2>
+        <img src={imageUrl} alt={name} />
+    </article>
+)
 
 // export async function getServerSideProps() {
 //     const client = createClient();
