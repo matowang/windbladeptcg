@@ -1,3 +1,5 @@
+import Layout from '../layout';
+
 import { useState, useRef, useCallback, useEffect } from 'react';
 
 const Cards = () => {
@@ -14,20 +16,20 @@ const Cards = () => {
                 setPage(page => page + 1);
             }
         })
-        console.log(node);
+
         if (node)
             observer.current.observe(node);
     }, [loading, hasNext]);
 
     async function fetchCards() {
-        console.log("fetchh");
+
         setLoading(true);
-        console.log(process.env.NEXT_PUBLIC_PTCG_API_URL);
+
         const res = await fetch(`${process.env.NEXT_PUBLIC_PTCG_API_URL}cards?page=${page}`, {
             method: 'GET',
         });
         const data = await res.json();
-        console.log(data);
+
         setCards(prevCards => [...prevCards, ...data])
         setLoading(false);
         if (data.length < 20)
@@ -36,13 +38,16 @@ const Cards = () => {
 
     useEffect(() => { fetchCards() }, [page]);
     return (
-        <div>{cards.map((card, i) =>
-            i === cards.length - 1 ?
-                <div key={card._id} ref={lastCardRef}><Card {...card} /></div> :
-                <Card key={card._id} {...card} />
-        )}
-            {loading && <h4>loading...</h4>}
-        </div>
+        <Layout>
+            <main>
+                {cards.map((card, i) =>
+                    i === cards.length - 1 ?
+                        <div key={card._id} ref={lastCardRef}><Card {...card} /></div> :
+                        <Card key={card._id} {...card} />
+                )}
+                {loading && <h4>loading...</h4>}
+            </main>
+        </Layout>
     )
 }
 
