@@ -1,1 +1,30 @@
 @use 'navbar';
+@use 'colors';
+
+$height: 70px;
+
+.header {
+    background: colors.$main;
+    height: $height;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#header-space {
+    height: $height;
+}
+
+#logo-link {
+    padding: .5em;
+    height: 100%;
+}
+
+.logo {
+    height: 100%;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
