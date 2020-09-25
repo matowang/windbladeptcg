@@ -27,12 +27,14 @@ const Cards = () => {
         <>
             <Header />
             <main>
-                {cards.map((card, i) =>
-                    i === cards.length - 1 ?
-                        <div key={card._id} ref={lastCardRef}><Card {...card} /></div> :
-                        <Card key={card._id} {...card} />
-                )}
-                {loading && <h4>loading...</h4>}
+                <div className="cards-grid">
+                    {cards.map((card, i) =>
+                        i === cards.length - 1 ?
+                            <div key={card._id} ref={lastCardRef}><Card {...card} /></div> :
+                            <Card key={card._id} {...card} />
+                    )}
+                    {loading && <h4>loading...</h4>}
+                </div>
             </main>
         </>
     )

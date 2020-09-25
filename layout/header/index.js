@@ -1,6 +1,6 @@
 import Navbar from './navbar';
 
-const Header = () =>
+const Header = ({ headerSpace }) =>
     <>
         <header className="header">
             <a id="logo-link" href="/">
@@ -9,7 +9,11 @@ const Header = () =>
             <Navbar />
         </header>
         {/* header-space is for the fixed header so it doesn't cut off content */}
-        <div id="header-space" />
+        {headerSpace && <div id="header-space" />}
     </>
 
-export default Header; 
+export default Header;
+
+Header.defaultProps = {
+    headerSpace: true,
+}
