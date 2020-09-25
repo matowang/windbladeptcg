@@ -1,14 +1,16 @@
-import Layout from '../layout';
+import Header from '../layout/header';
 
 import { useState, useRef, useCallback, useEffect } from 'react';
 
+import useFetchCards from '../hooks/useFetchCards';
+
 const Cards = () => {
-    const [cards, setCards] = useState([]);
     const [page, setPage] = useState(0);
-    const [hasNext, setHasNext] = useState(true);
-    const [loading, setLoading] = useState(false);
+
+    const { cards, hasNext, loading } = useFetchCards(page);
 
     const observer = useRef()
+
     const lastCardRef = useCallback(node => {
         if (observer.current) observer.current.disconnect()
         observer.current = new IntersectionObserver(entries => {
@@ -21,24 +23,9 @@ const Cards = () => {
             observer.current.observe(node);
     }, [loading, hasNext]);
 
-    async function fetchCards() {
-
-        setLoading(true);
-
-        const res = await fetch(`${process.env.NEXT_PUBLIC_PTCG_API_URL}cards?page=${page}`, {
-            method: 'GET',
-        });
-        const data = await res.json();
-
-        setCards(prevCards => [...prevCards, ...data])
-        setLoading(false);
-        if (data.length < 20)
-            setHasNext(false);
-    }
-
-    useEffect(() => { fetchCards() }, [page]);
     return (
-        <Layout>
+        <>
+            <Header />
             <main>
                 {cards.map((card, i) =>
                     i === cards.length - 1 ?
@@ -47,7 +34,7 @@ const Cards = () => {
                 )}
                 {loading && <h4>loading...</h4>}
             </main>
-        </Layout>
+        </>
     )
 }
 
