@@ -4,11 +4,6 @@ const useFetchCards = (page, query) => {
     const [cards, setCards] = useState([]);
     const [hasNext, setHasNext] = useState(true);
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        setCards([])
-    }, [query])
-
     async function fetchCards() {
         console.log("Fetch page", page);
         setLoading(true);
@@ -18,7 +13,11 @@ const useFetchCards = (page, query) => {
         });
         const data = await res.json();
 
-        setCards(prevCards => [...prevCards, ...data])
+        if (page === 1) {
+            setCards(data)
+        } else {
+            setCards(prevCards => [...prevCards, ...data]);
+        }
         setLoading(false);
         console.log("datalength", data.length)
         if (data.length < 20)

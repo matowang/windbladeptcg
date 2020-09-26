@@ -31,24 +31,29 @@ const Cards = () => {
 
     const handleSearch = (e) => {
         console.log(e.target.value);
-        setQuery(e.target.value);
         setPage(1);
+        setQuery(e.target.value);
     }
 
     return (
         <>
             <Header />
-            <SearchBar handleChange={handleSearch} value={query} />
-            <main>
-                <div className="cards-grid">
-                    {cards.map((card, i) =>
-                        i === cards.length - 1 ?
-                            <div key={card._id} ref={lastCardRef}><Card {...card} /></div> :
-                            <Card key={card._id} {...card} />
-                    )}
-                </div>
-                {loading && <h4>loading...</h4>}
-            </main>
+            <div id="cards-page">
+                <main>
+                    <div id="search-bar-container">
+                        <SearchBar handleChange={handleSearch} value={query} placeholder="搜尋" />
+                    </div>
+
+                    <div className="cards-grid">
+                        {cards.map((card, i) =>
+                            i === cards.length - 1 ?
+                                <div key={card._id} ref={lastCardRef}><Card {...card} /></div> :
+                                <Card key={card._id} {...card} />
+                        )}
+                    </div>
+                    {loading && <h4>loading...</h4>}
+                </main>
+            </div>
         </>
     )
 }
