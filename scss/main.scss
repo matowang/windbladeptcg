@@ -4,3 +4,7 @@
 
 @use 'pages/index';
 @use 'pages/cards';
+
+body {
+    overflow-y: scroll;
+}
