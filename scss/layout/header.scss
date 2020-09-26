@@ -19,11 +19,12 @@ $height: 70px;
 }
 
 #logo-link {
-    padding: .5em;
-    height: 100%;
+    width: $height;
+    padding: 8px;
 }
 
 .logo {
+    width: 100%;
     height: 100%;
     border-radius: 50%;
     box-sizing: border-box;
