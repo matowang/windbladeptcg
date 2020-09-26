@@ -6,10 +6,10 @@ const useFetchCards = (page) => {
     const [loading, setLoading] = useState(false);
 
     async function fetchCards() {
-
+        console.log("Fetch page", page);
         setLoading(true);
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_PTCG_API_URL}cards?page=${page}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_PTCG_API_URL}cards/SC2a?page=${page}`, {
             method: 'GET',
         });
         const data = await res.json();

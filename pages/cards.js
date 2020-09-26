@@ -5,7 +5,7 @@ import { useState, useRef, useCallback, useEffect } from 'react';
 import useFetchCards from '../hooks/useFetchCards';
 
 const Cards = () => {
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(1);
 
     const { cards, hasNext, loading } = useFetchCards(page);
 
