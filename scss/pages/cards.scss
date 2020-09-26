@@ -1,0 +1,16 @@
+.cards-grid {
+    display: grid;
+    margin: 0 auto;
+    padding: 1em;
+    max-width: 1000px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: repeat(3, auto);
+    grid-gap: 1em;
+    justify-items: stretch;
+}
+
+.cards-grid-item {
+    &__card-img {
+        max-width: 100%;
+    }
+}
