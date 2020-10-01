@@ -1,0 +1,31 @@
+.filter-cards-bar {
+    padding: 1em 0;
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    label {
+        margin-bottom: 1em;
+    }
+    .expansion-dropdown {
+        width: 100%;
+    }
+    .search-bar-container {
+        input {
+            border-radius: 1em;
+            outline: none;
+            width: 100%;
+            margin-bottom: 1em;
+        }
+    }
+}
+
+@media (min-width: 450px){ 
+    .filter-cards-bar {
+        &__form {
+            flex-direction: row;
+        }
+    }
+}

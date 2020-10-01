@@ -1,5 +1,8 @@
 const SearchBar = ({ handleChange, placeholder, value }) => {
-    return <input type="text" value={value} onChange={handleChange} placeholder={placeholder} />
+    return (
+        <label>
+            <input type="text" value={value} onChange={handleChange} placeholder={placeholder} />
+        </label>)
 }
 
 SearchBar.defaultProps = {

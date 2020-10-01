@@ -10,17 +10,9 @@
         width: 100%;
         max-width: 1000px;
     }
-}
-
-.cards-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-gap: 1em;
-    justify-items: stretch;
-}
-
-.cards-grid-item {
-    &__card-img {
-        max-width: 100%;
+    .cards-grid-item {
+        &__card-img {
+            max-width: 100%;
+        }
     }
 }
