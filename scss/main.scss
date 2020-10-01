@@ -5,6 +5,8 @@
 @use 'pages/index';
 @use 'pages/cards';
 
+@use 'components/FilterCardsBar';
+
 body {
     overflow-y: scroll;
 }

@@ -4,23 +4,11 @@
     display: flex;
     main {
         margin: 0 auto;
-        padding: 4em 1em;
+        padding: 0em 1em;
         display: flex;
         flex-direction: column;
         width: 100%;
         max-width: 1000px;
-    }
-}
-
-#search-bar-container {
-    position: fixed;
-    padding: 1em 0;
-    top: header.$height;
-    left: 50%;
-    transform: translate(-50%, 0);
-    input {
-        border-radius: 1em;
-        outline: none;
     }
 }
 

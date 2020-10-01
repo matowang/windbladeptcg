@@ -1,0 +1,14 @@
+.filter-cards-bar {
+    &__form {
+        display: flex;
+        justify-content: space-between;
+    }
+    padding: 1em 0;
+}
+
+.search-bar-container {
+    input {
+        border-radius: 1em;
+        outline: none;
+    }
+}
