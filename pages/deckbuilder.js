@@ -54,9 +54,15 @@ const deckbuilder = () => {
     return (
         <Layout>
             <main className="deckbuilder">
-                <section className="deckbuilder__deck">{deck.map(card => (
-                    <DeckCard {...card} />
-                ))}</section>
+                <section className="deckbuilder__deck-section">
+                    <div className="deckbuilder__deck">{deck.map(card => (
+                        <DeckCard {...card} />
+                    ))}
+                        {deck.length === 0 && <div className="deckbuilder__deck__empty">
+                            <div className="deckbuilder__deck__empty__text">您點的卡片會在著裡出現</div>
+                        </div>}
+                    </div>
+                </section>
                 <section className="deckbuilder__search">
                     <div className="card-search">
                         <FilterCardsBar
@@ -91,8 +97,8 @@ const DeckCard = ({ name, count, imageUrl }) => (
 )
 
 const Card = ({ _id, name, imageUrl, addCard }) =>
-    <article className="deckbuilder__card" onClick={() => addCard({ _id, name, imageUrl })}>
-        <img className="deckbuilder__card__img" src={imageUrl} />
+    <article className="deckbuilder__search-card" onClick={() => addCard({ _id, name, imageUrl })}>
+        <img className="deckbuilder__search-card__img" src={imageUrl} />
     </article>
 
 
