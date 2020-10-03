@@ -1,8 +1,11 @@
 const SearchBar = ({ handleChange, placeholder, value }) => {
     return (
-        <label>
-            <input type="text" value={value} onChange={handleChange} placeholder={placeholder} />
-        </label>)
+        <div className="search-bar-container">
+            <label>
+                <input type="text" value={value} onChange={handleChange} placeholder={placeholder} />
+            </label>
+        </div>
+    )
 }
 
 SearchBar.defaultProps = {

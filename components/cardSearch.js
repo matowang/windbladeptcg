@@ -3,6 +3,7 @@ import { useState, useRef, useCallback } from 'react';
 import FilterCardsBar from './filterCardsBar';
 
 import useFetchCards from '../hooks/useFetchCards';
+import useObserveRef from '../hooks/useObserveRef';
 
 const CardSearch = ({
     CardComponent
@@ -15,23 +16,12 @@ const CardSearch = ({
 
     const { cards, hasNext, loading, setCards } = useFetchCards(page, query);
 
-    const observer = useRef();
-
-    const lastCardRef = useCallback(node => {
-        if (observer.current) observer.current.disconnect();
-        console.log("hasNext?", hasNext);
-        observer.current = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting && hasNext && !loading) {
-                setPage(page => page + 1);
-                console.log('see last');
-            }
-        });
-
-        if (node) {
-            observer.current.observe(node);
-            console.log("create last node");
+    const lastCardRef = useObserveRef(() => {
+        if (hasNext && !loading) {
+            setPage(page => page + 1);
+            console.log('see last');
         }
-    }, [loading, hasNext]);
+    });
 
     const handleSearch = (e) => {
         e.persist()
@@ -57,14 +47,16 @@ const CardSearch = ({
                 handleExpansionDropdown={handleExpansionDropdown}
                 expansionDropdownValue={query.expansion} />
 
-            <div className="card-search__grid">
-                {cards.map((card, i) =>
-                    i === cards.length - 1 ?
-                        <div key={card._id} ref={lastCardRef}><CardComponent {...card} /></div> :
-                        <CardComponent key={card._id} {...card} />
-                )}
+            <div className="card-search__cards-container">
+                <div className="card-search__grid">
+                    {cards.map((card, i) =>
+                        i === cards.length - 1 ?
+                            <div key={card._id} ref={lastCardRef}><CardComponent {...card} /></div> :
+                            <CardComponent key={card._id} {...card} />
+                    )}
+                </div>
+                {loading && <h4>loading...</h4>}
             </div>
-            {loading && <h4>loading...</h4>}
         </div>
     )
 }
