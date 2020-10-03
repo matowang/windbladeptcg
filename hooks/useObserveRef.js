@@ -6,7 +6,6 @@ const useObserveRef = (callback) => {
     const ref = useCallback(node => {
         if (observer.current) observer.current.disconnect();
         observer.current = new IntersectionObserver(entries => {
-            console.log('intersect');
             if (entries[0].isIntersecting) {
                 callback();
             }

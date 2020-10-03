@@ -6,20 +6,22 @@
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
+    height: calc(100vh - #{header.$height});
     &__deck {
         flex-basis: 300px;
         flex-grow: 0;
-        background: skyblue;
+        overflow-y: scroll;
     }
-    height: calc(100vh - #{header.$height});
-    .card-search-container {
+    .deckbuilder__search {
         flex-grow: 1;
+        margin-left: 2em;
         .card-search {
             display: grid;
             grid-template-rows: auto 1fr;
             height: 100%;
             &__cards-container {
                 overflow-y: scroll;
+                padding-right: 2em;
             }
             .filter-cards-bar {
                 opacity: .5;
@@ -27,6 +29,24 @@
         }
     }
 }
+
+.deckbuilder__deck-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    &__img {
+        width: 30px;
+    }
+    &__name {
+        margin-left: 1em;
+        font-size: 1em;
+    }
+    &__count {
+        margin: 0 1em 0 auto;
+        font-weight: bold;
+    }
+}
+
 .deckbuilder__card {
     &__img {
         max-width: 100%;
