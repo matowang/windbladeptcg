@@ -7,6 +7,7 @@ import Layout from '../layout';
 import FilterCardsBar from '../components/filterCardsBar';
 
 const deckbuilder = () => {
+    //Deck Section
     const [deck, setDeck] = useState([]);
     const addCard = (card) => {
         setDeck(deck => {
@@ -21,6 +22,20 @@ const deckbuilder = () => {
         });
     }
 
+    const removeCard = (card) => {
+        setDeck(deck => {
+            const cardIdx = deck.findIndex(c => c._id === card._id);
+            if (deck[cardIdx].count <= 1) {
+                const newDeck = [...deck];
+                newDeck.splice(cardIdx, 1);
+                return newDeck;
+            }
+            const newCard = { ...card, count: deck[cardIdx].count - 1 }
+            return Object.assign([], deck, { [cardIdx]: newCard });
+        });
+    }
+
+    //Search Section
     const [page, setPage] = useState(1);
     const [query, setQuery] = useState({
         search: '',
@@ -51,12 +66,14 @@ const deckbuilder = () => {
         setPage(1);
         setQuery(query => ({ ...query, expansion: e.target.value }));
     }
+
+
     return (
         <Layout>
             <main className="deckbuilder">
                 <section className="deckbuilder__deck-section">
                     <div className="deckbuilder__deck">{deck.map(card => (
-                        <DeckCard {...card} />
+                        <DeckCard {...card} handleAdd={() => addCard(card)} handleDelete={() => removeCard(card)} />
                     ))}
                         {deck.length === 0 && <div className="deckbuilder__deck__empty">
                             <div className="deckbuilder__deck__empty__text">您點的卡片會在著裡出現</div>
@@ -88,11 +105,13 @@ const deckbuilder = () => {
     )
 }
 
-const DeckCard = ({ name, count, imageUrl }) => (
+const DeckCard = ({ name, count, imageUrl, handleDelete, handleAdd }) => (
     <article className="deckbuilder__deck-card">
         <img className="deckbuilder__deck-card__img" src={imageUrl} alt={name} />
         <h2 className="deckbuilder__deck-card__name">{name}</h2>
         <div className="deckbuilder__deck-card__count">{count}</div>
+        <button className="deckbuilder__deck-card__delete-btn" onClick={handleDelete}>-</button>
+        <button className="deckbuilder__deck-card__add-btn" onClick={handleAdd}>+</button>
     </article>
 )
 

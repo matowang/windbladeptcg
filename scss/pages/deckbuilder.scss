@@ -63,6 +63,10 @@ $deck-width: 300px;
         margin: 0 1em 0 auto;
         font-weight: bold;
     }
+    &__delete-btn, &__add-btn {
+        font-weight: bold;
+        width: 1.5em;
+    }
 }
 
 .deckbuilder__search-card {

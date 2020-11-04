@@ -8,7 +8,7 @@ const Navbar = () => (
                 <a className="navbar__link" href='/cards'>卡片專區</a>
             </li>
             <li className="navbar__item" >
-                <a className="navbar__link" href='/deckbuilder'>創造甲板</a>
+                <a className="navbar__link" href='/deckbuilder'>牌組合成器</a>
             </li>
         </ul>
     </nav>
