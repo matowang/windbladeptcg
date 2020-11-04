@@ -1,5 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
 
+import { useDrag, useDrop } from 'react-dnd';
+
 import useFetchCards from '../hooks/useFetchCards';
 import useObserveRef from '../hooks/useObserveRef';
 
@@ -9,11 +11,15 @@ import FilterCardsBar from '../components/filterCardsBar';
 const deckbuilder = () => {
     //Deck Section
     const [deck, setDeck] = useState([]);
+
+    const cardCount = deck.reduce((a, c) => a + c.count, 0);
+
     const addCard = (card) => {
         setDeck(deck => {
             const cardIdx = deck.findIndex(c => c._id === card._id);
-            if (cardIdx === -1)
+            if (cardIdx === -1) {
                 return [...deck, { ...card, count: 1 }];
+            }
             if (deck[cardIdx].count >= 4)
                 return deck;
 
@@ -72,13 +78,8 @@ const deckbuilder = () => {
         <Layout>
             <main className="deckbuilder">
                 <section className="deckbuilder__deck-section">
-                    <div className="deckbuilder__deck">{deck.map(card => (
-                        <DeckCard {...card} handleAdd={() => addCard(card)} handleDelete={() => removeCard(card)} />
-                    ))}
-                        {deck.length === 0 && <div className="deckbuilder__deck__empty">
-                            <div className="deckbuilder__deck__empty__text">您點的卡片會在著裡出現</div>
-                        </div>}
-                    </div>
+                    <DeckSection deck={deck} addCard={addCard} removeCard={removeCard} />
+                    <footer className="deckbuilder__deck-section__footer">卡數: {cardCount}</footer>
                 </section>
                 <section className="deckbuilder__search">
                     <div className="card-search">
@@ -92,8 +93,8 @@ const deckbuilder = () => {
                             <div className="card-search__grid">
                                 {cards.map((card, i) =>
                                     i === cards.length - 1 ?
-                                        <div key={card._id} ref={lastCardRef}><Card {...card} addCard={(card) => addCard(card)} /></div> :
-                                        <Card key={card._id} {...card} addCard={(card) => addCard(card)} />
+                                        <div key={card._id} ref={lastCardRef}><Card {...card} addCard={() => addCard(card)} /></div> :
+                                        <Card key={card._id} {...card} addCard={() => addCard(card)} />
                                 )}
                             </div>
                             {loading && <h4>loading...</h4>}
@@ -102,6 +103,30 @@ const deckbuilder = () => {
                 </section>
             </main>
         </Layout>
+    )
+}
+
+const DeckSection = ({ deck, addCard, removeCard }) => {
+    const [{ isOver, canDrop }, drop] = useDrop({
+        accept: 'search-card',
+        drop: addCard,
+        collect: (monitor) => ({
+            isOver: monitor.isOver(),
+            canDrop: monitor.canDrop(),
+        }),
+    })
+    return (
+        <div ref={drop}
+            className={`deckbuilder__deck
+            ${isOver ? ' deckbuilder__deck--drop-over' : ''}
+            ${canDrop ? ' deckbuilder__deck--dropping' : ''}
+            `}>{deck.map(card => (
+                <DeckCard key={card._id} {...card} handleAdd={() => addCard(card)} handleDelete={() => removeCard(card)} />
+            ))}
+            {deck.length === 0 && <div className="deckbuilder__deck__empty">
+                <div className="deckbuilder__deck__empty__text">您點的卡片會在著裡出現</div>
+            </div>}
+        </div>
     )
 }
 
@@ -115,10 +140,15 @@ const DeckCard = ({ name, count, imageUrl, handleDelete, handleAdd }) => (
     </article>
 )
 
-const Card = ({ _id, name, imageUrl, addCard }) =>
-    <article className="deckbuilder__search-card" onClick={() => addCard({ _id, name, imageUrl })}>
-        <img className="deckbuilder__search-card__img" src={imageUrl} />
-    </article>
-
+const Card = ({ _id, name, imageUrl, addCard }) => {
+    const [collectedProps, drag] = useDrag({
+        item: { _id, name, imageUrl, type: 'search-card' }
+    })
+    return (
+        <article ref={drag} className="deckbuilder__search-card" onClick={addCard}>
+            <img className="deckbuilder__search-card__img" src={imageUrl} />
+        </article>
+    )
+};
 
 export default deckbuilder;
