@@ -17,12 +17,16 @@ const deckbuilder = () => {
 
     const addCard = (card) => {
         setDeck(deck => {
+            const cardCount = deck.reduce((a, c) => a + c.count, 0);
+            if (cardCount === 40)
+                return deck;
+
             const cardIdx = deck.findIndex(c => c._id === card._id);
             if (cardIdx === -1) {
                 return [...deck, { ...card, count: 1 }];
             }
-            const cardCount = deck.reduce((a, c) => a + c.count, 0);
-            if (deck[cardIdx].count >= 4 || cardCount === 40)
+
+            if (deck[cardIdx].count >= 4)
                 return deck;
 
             const newCard = { ...card, count: deck[cardIdx].count + 1 }
