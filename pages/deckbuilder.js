@@ -1,16 +1,17 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState } from 'react';
 
 import { useDrag, useDrop } from 'react-dnd';
 
 import useFetchCards from '../hooks/useFetchCards';
 import useObserveRef from '../hooks/useObserveRef';
+import useStoredDeck from '../hooks/useStoredDeck';
 
 import Layout from '../layout';
 import FilterCardsBar from '../components/filterCardsBar';
 
 const deckbuilder = () => {
     //Deck Section
-    const [deck, setDeck] = useState([]);
+    const [deck, setDeck] = useStoredDeck();
 
     const cardCount = deck.reduce((a, c) => a + c.count, 0);
 
@@ -20,7 +21,8 @@ const deckbuilder = () => {
             if (cardIdx === -1) {
                 return [...deck, { ...card, count: 1 }];
             }
-            if (deck[cardIdx].count >= 4)
+            const cardCount = deck.reduce((a, c) => a + c.count, 0);
+            if (deck[cardIdx].count >= 4 || cardCount === 40)
                 return deck;
 
             const newCard = { ...card, count: deck[cardIdx].count + 1 }
@@ -79,7 +81,10 @@ const deckbuilder = () => {
             <main className="deckbuilder">
                 <section className="deckbuilder__deck-section">
                     <DeckSection deck={deck} addCard={addCard} removeCard={removeCard} />
-                    <footer className="deckbuilder__deck-section__footer">卡數: {cardCount}</footer>
+                    <footer className="deckbuilder__deck-section__footer">
+                        <div className="deckbuilder__deck-section__card-count">卡數: {cardCount}</div>
+                        <button className="deckbuilder__deck-section__clear-btn" onClick={() => setDeck([])}>清牌組</button>
+                    </footer>
                 </section>
                 <section className="deckbuilder__search">
                     <div className="card-search">

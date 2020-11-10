@@ -17,6 +17,13 @@ $deck-width: 300px;
         &__footer {
             font-weight: bold;
             padding: 1em 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        &__clear-btn {
+            background: none;
+            border: 1px solid rgb(255, 173, 173);
+            color: 1px solid rgb(255, 173, 173);
         }
     }
 
