@@ -1,0 +1,20 @@
+@use 'colors';
+
+.hover-title {
+    &__text {
+        font-size: 0;
+    }
+    &:hover {
+        .hover-title__text {
+            display: fixed !important;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -100%);
+            background: colors.$main;
+            border-radius: 4px;
+            color: white;
+            padding: 1em;
+            font-size: 1em;
+        }
+    }
+}
