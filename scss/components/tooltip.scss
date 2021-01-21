@@ -34,7 +34,9 @@
             }
         }
     }
-    &:hover {
+}
+@media (hover: hover) {
+    .tooltip:hover {
         .tooltip__text {
             visibility: visible;
         }
