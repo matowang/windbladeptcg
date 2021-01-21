@@ -4,7 +4,7 @@ const ExpansionDropdown = ({ handleChange, value }) =>
     <label>
         <select className="expansion-dropdown" value={value} onChange={handleChange}>
             {cardExpansionData.map(el =>
-                <option key={el.code} value={el.code}>{el.name}</option>
+                <option key={el.code} value={el.code}>{`${el.name}(${el.code})`}</option>
             )}
             <option value="">{"全部擴充"}</option>
         </select>

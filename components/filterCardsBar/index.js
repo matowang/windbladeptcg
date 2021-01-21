@@ -9,7 +9,7 @@ const FilterCardsBar = ({
 }) => {
     return (
         <header className="filter-cards-bar">
-            <form className="filter-cards-bar__form">
+            <form className="filter-cards-bar__form" onSubmit={e => { e.preventDefault(); }}>
                 <SearchBar handleChange={handleSearch} value={searchQuery} placeholder="搜尋" />
                 <ExpansionDropdown handleChange={handleExpansionDropdown} value={expansionDropdownValue} />
             </form>

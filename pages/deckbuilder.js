@@ -15,6 +15,7 @@ const deckbuilder = () => {
     const [deck, setDeck] = useStoredDeck();
 
     const cardCount = deck.reduce((a, c) => a + c.count, 0);
+    const totalPrice = deck.reduce((a, c) => a + c.count * c.price, 0);
 
     const addCard = (card) => {
         setDeck(deck => {
@@ -65,7 +66,7 @@ const deckbuilder = () => {
     });
 
     const handleSearch = (e) => {
-        e.persist()
+        e.persist();
         console.log(e.target.value);
         setCards([]);
         setPage(1);
@@ -88,6 +89,7 @@ const deckbuilder = () => {
                     <DeckSection deck={deck} addCard={addCard} removeCard={removeCard} />
                     <footer className="deckbuilder__deck-section__footer">
                         <div className="deckbuilder__deck-section__card-count">卡數: {cardCount}</div>
+                        <div className="deckbuilder__deck-section__total-price">總價: {totalPrice}元</div>
                         <button className="deckbuilder__deck-section__clear-btn" onClick={() => setDeck([])}>清牌組</button>
                     </footer>
                 </section>
@@ -134,7 +136,7 @@ const DeckSection = ({ deck, addCard, removeCard }) => {
                 <DeckCard key={card._id} {...card} handleAdd={() => addCard(card)} handleDelete={() => removeCard(card)} />
             ))}
             {deck.length === 0 && <div className="deckbuilder__deck__empty">
-                <div className="deckbuilder__deck__empty__text">您點的卡片會在著裡出現</div>
+                <div className="deckbuilder__deck__empty__text">您點的卡片會在框區出現</div>
             </div>}
         </div>
     )
@@ -150,14 +152,18 @@ const DeckCard = ({ name, count, imageUrl, handleDelete, handleAdd }) => (
     </article>
 )
 
-const Card = ({ _id, name, imageUrl, addCard }) => {
+const Card = ({ _id, name, series, price, number, imageUrl, addCard }) => {
     const [collectedProps, drag] = useDrag({
         item: { _id, name, imageUrl, type: 'search-card' }
     })
     return (
         <article ref={drag} className="deckbuilder__search-card" onClick={addCard}>
-            <h2>{name}</h2>
+            <h2 className="deckbuilder__search-card__title">{name}</h2>
             <CardImg className="deckbuilder__search-card__img" imageUrl={imageUrl} alt={name} />
+            <div className="deckbuilder__search-card__details">
+                <div className="deckbuilder__search-card__id">{series}/{number}</div>
+                <div className="deckbuilder__search-card__price">{price || '??'}元</div>
+            </div>
         </article>
     )
 };
