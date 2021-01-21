@@ -89,8 +89,10 @@ const deckbuilder = () => {
                 <section className="deckbuilder__deck-section">
                     <DeckSection deck={deck} addCard={addCard} removeCard={removeCard} />
                     <footer className="deckbuilder__deck-section__footer">
-                        <div className="deckbuilder__deck-section__card-count">卡數: {cardCount}</div>
-                        <div className="deckbuilder__deck-section__total-price">總價: {totalPrice}元</div>
+                        <div className="deckbuilder__deck-section__card-count">卡數:
+                            <span className={`deckbuilder__deck-section__card-count__number${cardCount !== 40 ? ' dangerous-text' : ''}`}>{cardCount}</span>
+                        </div>
+                        <div className="deckbuilder__deck-section__total-price">總價:{totalPrice}元</div>
                         <Tooltip title="清牌庫" type="DANGEROUS">
                             <button className="deckbuilder__deck-section__clear-btn" onClick={() => setDeck([])}>
                                 <img src="images/icons/trash-can.svg" alt="trash can" />

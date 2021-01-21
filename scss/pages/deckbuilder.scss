@@ -1,6 +1,6 @@
 @use '../layout/header';
 
-$deck-width: 300px;
+$deck-width: 170px;
 
 .deckbuilder {
     max-width: 1300px;
@@ -70,7 +70,7 @@ $deck-width: 300px;
             grid-template-rows: auto 1fr;
             height: 100%;
             &__grid {
-                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             }
         }
     }
@@ -111,3 +111,30 @@ $deck-width: 300px;
         justify-content: space-between;
     }
 }
+
+
+@media screen and (min-width:480px) { 
+    $deck-width: 220px;
+    .deckbuilder__deck-section {
+        width: $deck-width;
+    }
+    .deckbuilder__search {
+        margin-left: calc(#{$deck-width} + 2em);
+    }
+    .deckbuilder__search .card-search__grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+} 
+
+@media screen and (min-width:1000px) { 
+    $deck-width: 250px;
+    .deckbuilder__deck-section {
+        width: $deck-width;
+    }
+    .deckbuilder__search {
+        margin-left: calc(#{$deck-width} + 2em);
+    }
+    .deckbuilder__search .card-search__grid {
+        grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    }
+} 
