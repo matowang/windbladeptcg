@@ -1,0 +1,42 @@
+@use 'colors';
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    &__text {
+        visibility: hidden;
+        text-align: center;
+        border-radius: 6px;
+        position: absolute;
+        z-index: 1;
+        background: colors.$main;
+        opacity: .9;
+        color: white;
+        width: 120px;
+        bottom: 140%;
+        left: 50%;
+        margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+        padding: .5em;
+        &::after {
+            content: " ";
+            position: absolute;
+            top: 100%; /* At the bottom of the tooltip */
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: colors.$main transparent transparent transparent;
+        }
+        &--dangerous {
+            background: colors.$dangerous;
+            &::after {
+                border-color: colors.$dangerous transparent transparent transparent;
+            }
+        }
+    }
+    &:hover {
+        .tooltip__text {
+            visibility: visible;
+        }
+    }
+}

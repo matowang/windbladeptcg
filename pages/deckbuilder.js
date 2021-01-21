@@ -9,7 +9,7 @@ import useStoredDeck from '../hooks/useStoredDeck';
 import Layout from '../layout';
 import FilterCardsBar from '../components/filterCardsBar';
 import CardImg from '../components/cardImg';
-import HoverTitle from '../components/hover-title';
+import Tooltip from '../components/tooltip';
 
 const deckbuilder = () => {
     //Deck Section
@@ -91,9 +91,11 @@ const deckbuilder = () => {
                     <footer className="deckbuilder__deck-section__footer">
                         <div className="deckbuilder__deck-section__card-count">卡數: {cardCount}</div>
                         <div className="deckbuilder__deck-section__total-price">總價: {totalPrice}元</div>
-                        <button className="deckbuilder__deck-section__clear-btn" onClick={() => setDeck([])}>
-                            <img src="images/icons/trash-can.svg" alt="trash can" />
-                        </button>
+                        <Tooltip title="清牌庫" type="DANGEROUS">
+                            <button className="deckbuilder__deck-section__clear-btn" onClick={() => setDeck([])}>
+                                <img src="images/icons/trash-can.svg" alt="trash can" />
+                            </button>
+                        </Tooltip>
                     </footer>
                 </section>
                 <section className="deckbuilder__search">

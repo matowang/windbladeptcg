@@ -8,7 +8,7 @@
 
 @use 'components/filter-cards-bar';
 @use 'components/card-search';
-@use 'components/hover-title';
+@use 'components/tooltip';
 
 body {
     overflow-y: scroll;
