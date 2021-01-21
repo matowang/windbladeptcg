@@ -8,6 +8,7 @@ import useStoredDeck from '../hooks/useStoredDeck';
 
 import Layout from '../layout';
 import FilterCardsBar from '../components/filterCardsBar';
+import CardImg from '../components/cardImg';
 
 const deckbuilder = () => {
     //Deck Section
@@ -141,7 +142,7 @@ const DeckSection = ({ deck, addCard, removeCard }) => {
 
 const DeckCard = ({ name, count, imageUrl, handleDelete, handleAdd }) => (
     <article className="deckbuilder__deck-card">
-        <img className="deckbuilder__deck-card__img" src={imageUrl} alt={name} />
+        <CardImg className="deckbuilder__deck-card__img" imageUrl={imageUrl} alt={name} />
         <h2 className="deckbuilder__deck-card__name">{name}</h2>
         <div className="deckbuilder__deck-card__count">{count}</div>
         <button className="deckbuilder__deck-card__delete-btn" onClick={handleDelete}>-</button>
@@ -155,7 +156,8 @@ const Card = ({ _id, name, imageUrl, addCard }) => {
     })
     return (
         <article ref={drag} className="deckbuilder__search-card" onClick={addCard}>
-            <img className="deckbuilder__search-card__img" src={imageUrl} />
+            <h2>{name}</h2>
+            <CardImg className="deckbuilder__search-card__img" imageUrl={imageUrl} alt={name} />
         </article>
     )
 };
