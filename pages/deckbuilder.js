@@ -14,7 +14,6 @@ import Tooltip from '../components/tooltip';
 const deckbuilder = () => {
     //Deck Section
     const [deck, setDeck] = useStoredDeck();
-
     const cardCount = deck.reduce((a, c) => a + c.count, 0);
 
     const containsNullPrice = deck.some(({ price }) => price !== 0 && !price);
@@ -114,8 +113,8 @@ const deckbuilder = () => {
                             <div className="card-search__grid">
                                 {cards.map((card, i) =>
                                     i === cards.length - 1 ?
-                                        <div key={card._id} ref={lastCardRef}><Card {...card} addCard={() => addCard(card)} /></div> :
-                                        <Card key={card._id} {...card} addCard={() => addCard(card)} />
+                                        <div key={card._id} ref={lastCardRef}><Card card={card} {...card} addCard={() => addCard(card)} /></div> :
+                                        <Card key={card._id} card={card} {...card} addCard={() => addCard(card)} />
                                 )}
                             </div>
                             {loading && <h4>loading...</h4>}
@@ -142,7 +141,7 @@ const DeckSection = ({ deck, addCard, removeCard }) => {
             ${isOver ? ' deckbuilder__deck--drop-over' : ''}
             ${canDrop ? ' deckbuilder__deck--dropping' : ''}
             `}>{deck.map(card => (
-                <DeckCard key={card._id} {...card} handleAdd={() => addCard(card)} handleDelete={() => removeCard(card)} />
+                <DeckCard key={card._id} card={card} {...card} handleAdd={() => addCard(card)} handleDelete={() => removeCard(card)} />
             ))}
             {deck.length === 0 && <div className="deckbuilder__deck__empty">
                 <div className="deckbuilder__deck__empty__text">您點的卡片會在框區出現</div>
@@ -151,7 +150,7 @@ const DeckSection = ({ deck, addCard, removeCard }) => {
     )
 }
 
-const DeckCard = ({ name, count, price, imageUrl, handleDelete, handleAdd }) => (
+const DeckCard = ({ card, name, count, price, imageUrl, handleDelete, handleAdd }) => (
     <article className="deckbuilder__deck-card">
         <div className="deckbuilder__deck-card__price">{price || price === 0 ? price : '??'}<br />元</div>
         <CardImg className="deckbuilder__deck-card__img" imageUrl={imageUrl} alt={name} />
@@ -162,9 +161,9 @@ const DeckCard = ({ name, count, price, imageUrl, handleDelete, handleAdd }) => 
     </article>
 )
 
-const Card = ({ _id, name, series, price, number, imageUrl, addCard }) => {
+const Card = ({ card, name, series, price, number, imageUrl, addCard }) => {
     const [collectedProps, drag] = useDrag({
-        item: { _id, name, imageUrl, type: 'search-card' }
+        item: { ...card, type: 'search-card' }
     })
     return (
         <article ref={drag} className="deckbuilder__search-card" onClick={addCard}>
