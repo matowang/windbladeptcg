@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import { useDrag, useDrop } from 'react-dnd';
 
@@ -11,9 +11,10 @@ import FilterCardsBar from '../components/filterCardsBar';
 import CardImg from '../components/cardImg';
 import Tooltip from '../components/tooltip';
 
-const deckbuilder = () => {
+const deckbuilder = ({ queriedCards }) => {
+
     //Deck Section
-    const [deck, setDeck] = useStoredDeck();
+    const [deck, setDeck] = useStoredDeck(queriedCards);
     const cardCount = deck.reduce((a, c) => a + c.count, 0);
 
     const containsNullPrice = deck.some(({ price }) => price !== 0 && !price);
@@ -180,13 +181,45 @@ const Card = ({ card, name, series, price, number, imageUrl, addCard }) => {
 export default deckbuilder;
 
 export async function getServerSideProps({ query }) {
+
+    const parseQueryToCards = (query) => {
+        const cards = [];
+        const cardsData = query.split(" ");
+        for (let cardData of cardsData) {
+            const idSplitIdx = cardData.lastIndexOf('-');
+            cards.push({
+                cardId: cardData.substring(0, idSplitIdx),
+                count: parseInt(cardData.substring(idSplitIdx + 1))
+            });
+        }
+        return cards;
+    }
+
+    const populateCardData = async (cards) => {
+        try {
+            const apiQuery = cards.reduce((query, card) => query + card.cardId + '+', '');
+            const res = await fetch(`${process.env.NEXT_PUBLIC_PTCG_API_URL}cards/id/${apiQuery}`, {
+                method: 'GET',
+            });
+            const cardsData = await res.json();
+            for (let cardData of cardsData) {
+                let idx = cards.findIndex(c => c.cardId === cardData.cardId);
+                cards[idx] = { ...cards[idx], ...cardData };
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    let cards = [];
     if (query.cards) {
-        const cards = query.cards.split(" ")
+        cards = parseQueryToCards(query.cards);
+        await populateCardData(cards);
         console.log(cards);
     }
     return {
         props: {
-            query: query
+            queriedCards: cards
         }, // will be passed to the page component as props
     }
 }
