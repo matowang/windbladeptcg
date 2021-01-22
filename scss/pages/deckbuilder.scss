@@ -36,6 +36,7 @@ $deck-width: 170px;
 
     &__deck {
         overflow-y: scroll;
+        overflow-x: visible;
         display: flex;
         flex-direction: column;
         &::-webkit-scrollbar { 
@@ -78,17 +79,23 @@ $deck-width: 170px;
 
 .deckbuilder__deck-card {
     display: flex;
+    position: relative;
     align-items: center;
     margin-bottom: 1em;
+    &__price {
+        width: 2em;
+        text-align: center;
+        font-weight: bold;
+    }
     &__img {
         width: 30px;
     }
     &__name {
         margin-left: 1em;
+        margin-right: auto;
         font-size: 1em;
     }
     &__count {
-        margin: 0 1em 0 auto;
         font-weight: bold;
     }
     &__delete-btn, &__add-btn {

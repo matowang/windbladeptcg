@@ -16,7 +16,9 @@ const deckbuilder = () => {
     const [deck, setDeck] = useStoredDeck();
 
     const cardCount = deck.reduce((a, c) => a + c.count, 0);
-    const totalPrice = deck.reduce((a, c) => a + c.count * c.price, 0);
+
+    const containsNullPrice = deck.some(({ price }) => price !== 0 && !price);
+    const totalPrice = deck.reduce((a, c) => c.price ? a + c.count * c.price : a, 0);
 
     const addCard = (card) => {
         setDeck(deck => {
@@ -92,7 +94,7 @@ const deckbuilder = () => {
                         <div className="deckbuilder__deck-section__card-count">卡數:
                             <span className={`deckbuilder__deck-section__card-count__number${cardCount !== 40 ? ' dangerous-text' : ''}`}>{cardCount}</span>
                         </div>
-                        <div className="deckbuilder__deck-section__total-price">總價:{totalPrice}元</div>
+                        <div className="deckbuilder__deck-section__total-price">總價:{totalPrice}元{containsNullPrice && '+'}</div>
                         <Tooltip title="清牌庫" type="DANGEROUS">
                             <button className="deckbuilder__deck-section__clear-btn" onClick={() => setDeck([])}>
                                 <img src="images/icons/trash-can.svg" alt="trash can" />
@@ -149,12 +151,13 @@ const DeckSection = ({ deck, addCard, removeCard }) => {
     )
 }
 
-const DeckCard = ({ name, count, imageUrl, handleDelete, handleAdd }) => (
+const DeckCard = ({ name, count, price, imageUrl, handleDelete, handleAdd }) => (
     <article className="deckbuilder__deck-card">
+        <div className="deckbuilder__deck-card__price">{price || price === 0 ? price : '??'}<br />元</div>
         <CardImg className="deckbuilder__deck-card__img" imageUrl={imageUrl} alt={name} />
         <h2 className="deckbuilder__deck-card__name">{name}</h2>
-        <div className="deckbuilder__deck-card__count">{count}</div>
         <button className="deckbuilder__deck-card__delete-btn" onClick={handleDelete}>-</button>
+        <div className="deckbuilder__deck-card__count">{count}</div>
         <button className="deckbuilder__deck-card__add-btn" onClick={handleAdd}>+</button>
     </article>
 )
@@ -169,10 +172,20 @@ const Card = ({ _id, name, series, price, number, imageUrl, addCard }) => {
             <CardImg className="deckbuilder__search-card__img" imageUrl={imageUrl} alt={name} />
             <div className="deckbuilder__search-card__details">
                 <div className="deckbuilder__search-card__id">{series}/{number}</div>
-                <div className="deckbuilder__search-card__price">{price || '??'}元</div>
+                <div className="deckbuilder__search-card__price">{price || price === 0 ? price : '??'}元</div>
             </div>
         </article>
     )
 };
 
 export default deckbuilder;
+
+export async function getServerSideProps({ query }) {
+    const cards = query.cards.split(" ")
+    console.log(cards);
+    return {
+        props: {
+            query: query
+        }, // will be passed to the page component as props
+    }
+}
