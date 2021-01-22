@@ -180,8 +180,10 @@ const Card = ({ card, name, series, price, number, imageUrl, addCard }) => {
 export default deckbuilder;
 
 export async function getServerSideProps({ query }) {
-    const cards = query.cards.split(" ")
-    console.log(cards);
+    if (query.cards) {
+        const cards = query.cards.split(" ")
+        console.log(cards);
+    }
     return {
         props: {
             query: query
