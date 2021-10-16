@@ -11,6 +11,8 @@ import FilterCardsBar from '../components/filterCardsBar';
 import CardImg from '../components/cardImg';
 import Tooltip from '../components/tooltip';
 
+import Tilt from 'react-tilt';
+
 const deckbuilder = ({ queriedCards }) => {
 
     //Deck Section
@@ -169,7 +171,9 @@ const Card = ({ card, name, series, price, number, imageUrl, addCard }) => {
     return (
         <article ref={drag} className="deckbuilder__search-card" onClick={addCard}>
             <h2 className="deckbuilder__search-card__title">{name}</h2>
-            <CardImg className="deckbuilder__search-card__img" imageUrl={imageUrl} alt={name} />
+            <Tilt className="Tilt" options={{ max: 40, scale: 1, }}  >
+                <CardImg className="deckbuilder__search-card__img" imageUrl={imageUrl} alt={name} />
+            </Tilt>
             <div className="deckbuilder__search-card__details">
                 <div className="deckbuilder__search-card__id">{series}/{number}</div>
                 <div className="deckbuilder__search-card__price">{price || price === 0 ? price : '??'}元</div>

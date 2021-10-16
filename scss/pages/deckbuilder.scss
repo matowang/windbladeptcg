@@ -1,5 +1,7 @@
 @use '../layout/header';
 
+@use '../colors';
+
 $deck-width: 170px;
 
 .deckbuilder {
@@ -8,15 +10,18 @@ $deck-width: 170px;
     height: calc(100vh - #{header.$height});
     padding: 0 2em;
     &__deck-section {
-        padding-top: 2em;
+        padding: 1em;
         position: fixed;
         width: $deck-width;
-        height: inherit;
+        height: calc(100vh - #{header.$height} - 1em);
         display: grid;
         grid-template-rows: 1fr auto;
+        background-color: colors.$light-bg;
+        border-radius: 14px;
+        margin-bottom: 1em;
+        color: colors.$light-text;
         &__footer {
             font-weight: bold;
-            padding: 1em 0;
             display: flex;
             justify-content: space-between;
         }
@@ -105,18 +110,31 @@ $deck-width: 170px;
 }
 
 .deckbuilder__search-card {
+    padding: 0;
+    &:hover {
+        .deckbuilder__search-card__title, .deckbuilder__search-card__details {
+            opacity: 1;
+        }
+    }
     &__title {
         font-size: 1.2em;
-        margin: 1em 0 0 0;
+        margin: 0;
+        opacity: 0;
+        transition: opacity .2s;
     }
     &__img {
         max-width: 100%;
+        border-radius: 14px;
     }
     &__details {
         font-size: .8em;
         display: flex;
         justify-content: space-between;
+        opacity: 0;
+        color: colors.$light-text;
+        transition: opacity .2s;
     }
+    
 }
 
 @media screen and (min-width:480px) { 

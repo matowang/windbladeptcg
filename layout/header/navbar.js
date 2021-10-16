@@ -2,7 +2,7 @@ const Navbar = () => (
     <nav className="navbar">
         <ul className="navbar__list">
             <li className="navbar__item" >
-                <a className="navbar__link" href='/cards'>卡片專區</a>
+                <a className="navbar__link" href='/cards'>卡片專區Cards</a>
             </li>
             <li className="navbar__item">
                 <a className="navbar__link" id="logo-link" href="/">

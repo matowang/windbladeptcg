@@ -12,10 +12,13 @@
 @use 'components/card-search';
 @use 'components/tooltip';
 
+@use './fonts.scss';
+
 body {
     overflow-y: scroll;
     background: colors.$main;
     color: white;
+    font-family: "DFKai-sb", "FangSong", Arial, serif;
 }
 
 .dangerous-text {
