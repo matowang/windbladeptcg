@@ -20,21 +20,24 @@ $deck-width: 170px;
         border-radius: 14px;
         margin-bottom: 1em;
         color: colors.$light-text;
+        box-shadow: 0px 3px 6px 5px rgba(0,0,0,0.16);
         &__footer {
-            font-weight: bold;
             display: flex;
             justify-content: space-between;
         }
-        &__clear-btn {
+        &__card-count__number {
+            color: colors.$highlight;
+            &--max {
+                color: colors.$light-text;
+            }
+        }
+        &__clear-btn, &__share-btn {
             background: none;
             border: none;
             outline: none;
             cursor: pointer;
             img {
                 height: 1em;
-            }
-            &:hover {
-                background: rgb(255, 169, 169);
             }
         }
     }
@@ -44,18 +47,18 @@ $deck-width: 170px;
         overflow-x: visible;
         display: flex;
         flex-direction: column;
+        opacity: 100%;
+        transition: opacity .1s;
         &::-webkit-scrollbar { 
             display: none;  /* Safari and Chrome */
         }
         &--dropping {
-            background: rgb(230, 253, 255);
+            opacity: 50%;
         }
         &--drop-over {
-            background: rgb(190, 255, 228);
+            opacity: 100%;
         }
         &__empty {
-            border-radius: 29px 29px 29px 29px;
-            border: 4px dashed #d6d6d6;
             padding: 2em;
             color: #b8afaf;
             display: flex;
@@ -87,7 +90,7 @@ $deck-width: 170px;
     position: relative;
     align-items: center;
     margin-bottom: .5em;
-    background: colors.$main;
+    background: #0A192F;
     padding: .3em;
     height: 3em;
     border-radius: 10px;

@@ -90,13 +90,18 @@ const deckbuilder = ({ queriedCards }) => {
     return (
         <Layout>
             <main className="deckbuilder">
-                <section className="deckbuilder__deck-section">
+                <section id="deckbuilder__deck-section" className="deckbuilder__deck-section">
                     <DeckSection deck={deck} addCard={addCard} removeCard={removeCard} />
                     <footer className="deckbuilder__deck-section__footer">
                         <div className="deckbuilder__deck-section__card-count">卡數:
-                            <span className={`deckbuilder__deck-section__card-count__number${cardCount !== 40 ? ' dangerous-text' : ''}`}>{cardCount}</span>
+                            <span className={`deckbuilder__deck-section__card-count__number${cardCount >= 40 ? ' deckbuilder__deck-section__card-count__number--max' : ''}`}>{cardCount}</span>
                         </div>
                         <div className="deckbuilder__deck-section__total-price">總價:{totalPrice}元{containsNullPrice && '+'}</div>
+                        <Tooltip title="分享" type="default">
+                            <button className="deckbuilder__deck-section__share-btn" >
+                                <img src="images/icons/share.svg" alt="share" />
+                            </button>
+                        </Tooltip>
                         <Tooltip title="清牌庫" type="DANGEROUS">
                             <button className="deckbuilder__deck-section__clear-btn" onClick={() => setDeck([])}>
                                 <img src="images/icons/trash-can.svg" alt="trash can" />
@@ -147,7 +152,7 @@ const DeckSection = ({ deck, addCard, removeCard }) => {
                 <DeckCard key={card._id} card={card} {...card} handleAdd={() => addCard(card)} handleDelete={() => removeCard(card)} />
             ))}
             {deck.length === 0 && <div className="deckbuilder__deck__empty">
-                <div className="deckbuilder__deck__empty__text">您點的卡片會在框區出現</div>
+                <div className="deckbuilder__deck__empty__text">您點的卡片將在這出現</div>
             </div>}
         </div>
     )
@@ -155,12 +160,11 @@ const DeckSection = ({ deck, addCard, removeCard }) => {
 
 const DeckCard = ({ card, name, count, price, imageUrl, handleDelete, handleAdd }) => {
     const max = count >= 4;
-    const zero = count === 0;
     return <article className="deckbuilder__deck-card">
         {/* <div className="deckbuilder__deck-card__price">{price || price === 0 ? price : '??'}<br />元</div> */}
         <CardImg className="deckbuilder__deck-card__img" imageUrl={imageUrl} alt={name} />
         <h2 className="deckbuilder__deck-card__name">{name}</h2>
-        <button className={`deckbuilder__deck-card__delete-btn ${zero ? "deckbuilder__deck-card__delete-btn--zero" : ""}`} onClick={handleDelete}>-</button>
+        <button className="deckbuilder__deck-card__delete-btn" onClick={handleDelete}>-</button>
         <div className={`deckbuilder__deck-card__count ${max ? "deckbuilder__deck-card__count--max" : ""}`}>{count}</div>
         <button className={`deckbuilder__deck-card__add-btn ${max ? "deckbuilder__deck-card__add-btn--max" : ""}`} onClick={handleAdd}>+</button>
     </article>

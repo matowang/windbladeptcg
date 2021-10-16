@@ -16,9 +16,10 @@
 
 body {
     overflow-y: scroll;
-    background: colors.$main;
+    background: rgb(7,39,85);
+    background: linear-gradient(0deg, rgba(7,39,85,1) 0%, rgba(5,21,43,1) 100%);
     color: white;
-    
+    background-attachment: fixed;
     font-family: 'Roboto Mono', 'cwTeXKai', serif;
 }
 
