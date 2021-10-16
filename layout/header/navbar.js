@@ -6,7 +6,7 @@ const Navbar = () => (
             </li>
             <li className="navbar__item">
                 <a className="navbar__link" id="logo-link" href="/">
-                    <img className="logo" src="/katana-wind-logo-light-sword-no-bg.svg" alt="logo" />
+                    <img className="logo" src="/katana-wind-logo-no-bg.svg" alt="logo" />
                 </a>
             </li>
             <li className="navbar__item" >
