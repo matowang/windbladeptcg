@@ -86,14 +86,19 @@ $deck-width: 170px;
     display: flex;
     position: relative;
     align-items: center;
-    margin-bottom: 1em;
+    margin-bottom: .5em;
+    background: colors.$main;
+    padding: .3em;
+    height: 3em;
+    border-radius: 10px;
     &__price {
         width: 2em;
         text-align: center;
         font-weight: bold;
     }
     &__img {
-        width: 30px;
+        height: 100%;
+        border-radius: 2px;
     }
     &__name {
         margin-left: 1em;
@@ -102,10 +107,35 @@ $deck-width: 170px;
     }
     &__count {
         font-weight: bold;
+        margin: 0 .5em;
+        color: colors.$highlight;
+        font-family: 'Roboto Mono', monospace;
+        &--max {
+            color: white;
+        }
     }
     &__delete-btn, &__add-btn {
         font-weight: bold;
         width: 1.5em;
+        border-radius: 6px;
+        height: 100%;
+        background: #0B2739;
+        border: none;
+        color: colors.$highlight;
+        font-family: 'Roboto Mono', monospace;
+        cursor: pointer;
+        &:hover {
+            background-color: colors.$lighter-bg;
+        }
+    }
+    &__add-btn {
+        &--max {
+            opacity: 20%;
+            cursor: default;
+            &:hover {
+                background: #0B2739;
+            }
+        }
     }
 }
 
@@ -138,7 +168,7 @@ $deck-width: 170px;
 }
 
 @media screen and (min-width:480px) { 
-    $deck-width: 220px;
+    $deck-width: 250px;
     .deckbuilder__deck-section {
         width: $deck-width;
     }
@@ -151,7 +181,7 @@ $deck-width: 170px;
 } 
 
 @media screen and (min-width:1000px) { 
-    $deck-width: 250px;
+    $deck-width: 300px;
     .deckbuilder__deck-section {
         width: $deck-width;
     }
@@ -160,5 +190,8 @@ $deck-width: 170px;
     }
     .deckbuilder__search .card-search__grid {
         grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    }
+    .deckbuilder__deck-card {
+        height: 3.5em;
     }
 } 

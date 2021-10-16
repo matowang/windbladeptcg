@@ -153,16 +153,19 @@ const DeckSection = ({ deck, addCard, removeCard }) => {
     )
 }
 
-const DeckCard = ({ card, name, count, price, imageUrl, handleDelete, handleAdd }) => (
-    <article className="deckbuilder__deck-card">
-        <div className="deckbuilder__deck-card__price">{price || price === 0 ? price : '??'}<br />元</div>
+const DeckCard = ({ card, name, count, price, imageUrl, handleDelete, handleAdd }) => {
+    const max = count >= 4;
+    const zero = count === 0;
+    return <article className="deckbuilder__deck-card">
+        {/* <div className="deckbuilder__deck-card__price">{price || price === 0 ? price : '??'}<br />元</div> */}
         <CardImg className="deckbuilder__deck-card__img" imageUrl={imageUrl} alt={name} />
         <h2 className="deckbuilder__deck-card__name">{name}</h2>
-        <button className="deckbuilder__deck-card__delete-btn" onClick={handleDelete}>-</button>
-        <div className="deckbuilder__deck-card__count">{count}</div>
-        <button className="deckbuilder__deck-card__add-btn" onClick={handleAdd}>+</button>
+        <button className={`deckbuilder__deck-card__delete-btn ${zero ? "deckbuilder__deck-card__delete-btn--zero" : ""}`} onClick={handleDelete}>-</button>
+        <div className={`deckbuilder__deck-card__count ${max ? "deckbuilder__deck-card__count--max" : ""}`}>{count}</div>
+        <button className={`deckbuilder__deck-card__add-btn ${max ? "deckbuilder__deck-card__add-btn--max" : ""}`} onClick={handleAdd}>+</button>
     </article>
-)
+}
+
 
 const Card = ({ card, name, series, price, number, imageUrl, addCard }) => {
     const [collectedProps, drag] = useDrag({
