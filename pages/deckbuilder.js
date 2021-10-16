@@ -215,7 +215,7 @@ export async function getServerSideProps({ query }) {
     if (query.cards) {
         cards = parseQueryToCards(query.cards);
         await populateCardData(cards);
-        console.log(cards);
+        //console.log(cards);
     }
     return {
         props: {

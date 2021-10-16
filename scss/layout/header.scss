@@ -1,12 +1,12 @@
 @use 'navbar';
-@use 'colors';
+@use '../colors';
 
 $height: 70px;
 
 .header {
     background: colors.$main;
     height: $height;
-    width: 100vw;
+    width: 100%;
     position: fixed;
     z-index: 10;
     top: 0;

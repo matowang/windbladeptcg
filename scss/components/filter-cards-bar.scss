@@ -1,3 +1,5 @@
+@use '../colors.scss';
+
 .filter-cards-bar {
 
     &__form {
@@ -10,6 +12,12 @@
     }
     .expansion-dropdown {
         width: 100%;
+        background-color: colors.$light-bg;
+        border: none;
+        padding: 5px;
+        box-sizing: border-box;
+        color: hsla(0, 0%, 100%, 0.6);
+        font-size: .8em;
     }
     .search-bar-container {
         input {
@@ -17,6 +25,15 @@
             outline: none;
             width: 100%;
             margin-bottom: 1em;
+            background-color: colors.$light-bg;
+            border: none;
+            padding: 5px;
+            box-sizing: border-box;
+            color: hsl(0, 0%, 100%);
+            &::placeholder {
+                color: hsla(0, 0%, 100%, 0.6);
+                font-size: .8em;
+            }
         }
     }
 }
