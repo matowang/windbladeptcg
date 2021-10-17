@@ -10,6 +10,7 @@ import Layout from '../layout';
 import FilterCardsBar from '../components/filterCardsBar';
 import CardImg from '../components/cardImg';
 import Tooltip from '../components/tooltip';
+import GetLink from '../components/getlink';
 
 import Tilt from 'react-tilt';
 
@@ -97,11 +98,7 @@ const deckbuilder = ({ queriedCards }) => {
                             <span className={`deckbuilder__deck-section__card-count__number${cardCount >= 40 ? ' deckbuilder__deck-section__card-count__number--max' : ''}`}>{cardCount}</span>
                         </div>
                         <div className="deckbuilder__deck-section__total-price">總價:{totalPrice}元{containsNullPrice && '+'}</div>
-                        <Tooltip title="分享" type="default">
-                            <button className="deckbuilder__deck-section__share-btn" >
-                                <img src="images/icons/share.svg" alt="share" />
-                            </button>
-                        </Tooltip>
+                        <GetLink link={typeof window === 'undefined' ? "" : window.location.href} />
                         <Tooltip title="清牌庫" type="DANGEROUS">
                             <button className="deckbuilder__deck-section__clear-btn" onClick={() => setDeck([])}>
                                 <img src="images/icons/trash-can.svg" alt="trash can" />
