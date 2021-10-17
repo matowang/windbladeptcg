@@ -14,7 +14,7 @@ const useFetchCards = (page, query) => {
         if (fetchController.current) fetchController.current.abort();
         fetchController.current = new AbortController();
 
-        const res = await fetch(`${process.env.NEXT_PUBLIC_PTCG_API_URL}cards/${query.expansion}?search=${query.search}&page=${page}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_PTCG_API_URL}cards/${query.expansion === "ALL" ? "" : query.expansion}?search=${query.search}&page=${page}`, {
             method: 'GET',
             signal: fetchController.current.signal
         });

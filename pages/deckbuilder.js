@@ -11,6 +11,7 @@ import FilterCardsBar from '../components/filterCardsBar';
 import CardImg from '../components/cardImg';
 import Tooltip from '../components/tooltip';
 import GetLink from '../components/getlink';
+import LoadingIcon from '../components/loading-icon';
 
 import Tilt from 'react-tilt';
 
@@ -59,7 +60,7 @@ const deckbuilder = ({ queriedCards }) => {
     const [page, setPage] = useState(1);
     const [query, setQuery] = useState({
         search: '',
-        expansion: ''
+        expansion: 'ALL'
     });
 
     const { cards, hasNext, loading, setCards } = useFetchCards(page, query);
@@ -80,7 +81,6 @@ const deckbuilder = ({ queriedCards }) => {
     }
 
     const handleExpansionDropdown = (e) => {
-        e.persist()
         console.log(e.target.value);
         setCards([])
         setPage(1);
@@ -122,7 +122,7 @@ const deckbuilder = ({ queriedCards }) => {
                                         <Card key={card._id} card={card} {...card} addCard={() => addCard(card)} />
                                 )}
                             </div>
-                            {loading && <h4>loading...</h4>}
+                            {loading && <LoadingIcon />}
                         </div>
                     </div>
                 </section>

@@ -4,16 +4,10 @@ import Head from 'next/head'
 import Header from './header';
 import Footer from './footer';
 
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
-
-const theme = createTheme({
-    palette: {
-        mode: 'dark',
-    },
-});
+import MaterialUIDarkTheme from '../components/providers/materialUIDarkTheme';
 
 const Layout = ({ children, headerSpace }) =>
-    <ThemeProvider theme={theme}>
+    <MaterialUIDarkTheme >
         <Head>
             <title>風刃</title>
             <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
@@ -25,7 +19,7 @@ const Layout = ({ children, headerSpace }) =>
 
         {children}
         <Footer />
-    </ThemeProvider>
+    </MaterialUIDarkTheme>
     ;
 
 export default Layout;

@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
 
 import FilterCardsBar from './filterCardsBar';
+import LoadingIcon from './loading-icon';
 
 import useFetchCards from '../hooks/useFetchCards';
 import useObserveRef from '../hooks/useObserveRef';
@@ -11,7 +12,7 @@ const CardSearch = ({
     const [page, setPage] = useState(1);
     const [query, setQuery] = useState({
         search: '',
-        expansion: ''
+        expansion: 'ALL'
     });
 
     const { cards, hasNext, loading, setCards } = useFetchCards(page, query);
@@ -32,7 +33,6 @@ const CardSearch = ({
     }
 
     const handleExpansionDropdown = (e) => {
-        e.persist()
         console.log(e.target.value);
         setCards([])
         setPage(1);
@@ -55,7 +55,8 @@ const CardSearch = ({
                             <CardComponent key={card._id} {...card} />
                     )}
                 </div>
-                {loading && <h4>loading...</h4>}
+                {cards.length === 0 && !loading && <div className="no-cards">無相關卡片</div>}
+                {loading && <LoadingIcon />}
             </div>
         </div>
     )
