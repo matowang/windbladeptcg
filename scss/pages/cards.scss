@@ -13,6 +13,10 @@
     .cards-grid-item {
         &__card-img {
             max-width: 100%;
+            border-radius: 14px;
+            
+            &:hover {
+            }
         }
     }
 }

@@ -3,9 +3,6 @@ import Navbar from './navbar';
 const Header = ({ headerSpace }) =>
     <>
         <header className="header">
-            <a id="logo-link" href="/">
-                <img className="logo" src="/logo.png" alt="logo" />
-            </a>
             <Navbar />
         </header>
         {/* header-space is for the fixed header so it doesn't cut off content */}

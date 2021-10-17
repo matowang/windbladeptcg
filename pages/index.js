@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <Layout headerSpace={false} >
       <main className="main">
-        <img className="main__logo" src="/logo.png" alt="logo" />
+        <object type="image/svg+xml" data="/katana-wind-logo-no-bg-animated.svg" alt="logo" />
       </main>
     </Layout>
   )

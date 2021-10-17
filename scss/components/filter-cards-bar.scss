@@ -1,15 +1,23 @@
-.filter-cards-bar {
+@use '../colors.scss';
 
+.filter-cards-bar {
+    
     &__form {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
-    label {
-        margin-bottom: 1em;
-    }
     .expansion-dropdown {
+        height: 100%;
         width: 100%;
+        background-color: colors.$light-bg;
+        border: none;
+        border-radius: 0;
+        box-sizing: border-box;
+        color: hsla(0, 0%, 100%, 0.6);
+        font-size: .8em;
+        font-family: 'Roboto Mono', 'cwTeXKai', serif;
+        margin: 0;
     }
     .search-bar-container {
         input {
@@ -17,14 +25,25 @@
             outline: none;
             width: 100%;
             margin-bottom: 1em;
+            background-color: colors.$light-bg;
+            border: none;
+            padding: 5px;
+            box-sizing: border-box;
+            color: hsl(0, 0%, 100%);
+            &::placeholder {
+                color: hsla(0, 0%, 100%, 0.6);
+                font-size: .8em;
+            }
         }
     }
 }
 
-@media (min-width: 450px){ 
+@media (min-width: 700px){ 
     .filter-cards-bar {
         &__form {
             flex-direction: row;
+            height: 2rem;
+            margin-bottom: 1em;
         }
     }
 }

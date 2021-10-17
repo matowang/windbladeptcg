@@ -1,12 +1,11 @@
-@use 'navbar';
-@use 'colors';
+@use '../colors';
 
 $height: 70px;
 
 .header {
     background: colors.$main;
     height: $height;
-    width: 100vw;
+    width: 100%;
     position: fixed;
     z-index: 10;
     top: 0;
@@ -19,14 +18,46 @@ $height: 70px;
     height: $height;
 }
 
-#logo-link {
-    width: $height;
-    padding: 8px;
+.navbar {
+    box-sizing: border-box;
+    margin-left: 2em;
+    width: 100%;
+    padding: 0 2em;
+    margin: 0;
+    &__list {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        justify-content: space-between;
+    }
+    &__item {
+        margin: 0;
+        list-style: none;
+        list-style-type: none;
+        display: flex;
+    }
+    &__link {
+        margin: auto 0;
+        color: white;
+    }
+    #logo-link {
+        width: $height;
+        padding: 8px;
+    }
+    
+    .logo {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+    }
 }
 
-.logo {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    box-sizing: border-box;
+@media(min-width: 500px) {
+    .navbar {
+        &__item {
+            margin: 0em 1em;
+        }
+    }
 }
