@@ -10,7 +10,7 @@ import Layout from '../layout';
 import FilterCardsBar from '../components/filterCardsBar';
 import CardImg from '../components/cardImg';
 import Tooltip from '../components/tooltip';
-import GetLink from '../components/getlink';
+import GetLink from '../components/getLink';
 import LoadingIcon from '../components/loading-icon';
 
 import Tilt from 'react-tilt';
