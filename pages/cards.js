@@ -1,4 +1,4 @@
-import Header from '../layout/header';
+import Layout from '../layout';
 
 import CardSearch from '../components/cardSearch';
 import CardImg from '../components/cardImg';
@@ -7,14 +7,13 @@ import Tilt from 'react-tilt'
 
 const Cards = () => {
     return (
-        <>
-            <Header />
+        <Layout>
             <div id="cards-page">
                 <main>
                     <CardSearch CardComponent={Card} />
                 </main>
             </div>
-        </>
+        </ Layout>
     )
 }
 
