@@ -122,6 +122,7 @@ const deckbuilder = ({ queriedCards }) => {
                                         <Card key={card._id} card={card} {...card} addCard={() => addCard(card)} />
                                 )}
                             </div>
+                            {cards.length === 0 && !loading && <div className="no-cards">無相關卡片</div>}
                             {loading && <LoadingIcon />}
                         </div>
                     </div>
