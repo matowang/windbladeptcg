@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
 
 import FilterCardsBar from './filterCardsBar';
-import LoadingIcon from './loading-icon';
+import LoadingCard from './loadingCard';
 
 import useFetchCards from '../hooks/useFetchCards';
 import useObserveRef from '../hooks/useObserveRef';
@@ -38,6 +38,7 @@ const CardSearch = ({
         setPage(1);
         setQuery(query => ({ ...query, expansion: e.target.value }));
     }
+
     return (
 
         <div className="card-search">
@@ -54,9 +55,10 @@ const CardSearch = ({
                             <div key={card._id} ref={lastCardRef}><CardComponent {...card} /></div> :
                             <CardComponent key={card._id} {...card} />
                     )}
+                    {loading && [...Array(8).keys()].map(k => <LoadingCard key={"loading-card" + k} />)}
                 </div>
                 {cards.length === 0 && !loading && <div className="no-cards">無相關卡片</div>}
-                {loading && <LoadingIcon />}
+
             </div>
         </div>
     )

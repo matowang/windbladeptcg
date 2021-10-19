@@ -11,7 +11,7 @@ import FilterCardsBar from '../components/filterCardsBar';
 import CardImg from '../components/cardImg';
 import Tooltip from '../components/tooltip';
 import GetLink from '../components/getLink';
-import LoadingIcon from '../components/loading-icon';
+import LoadingCard from '../components/loadingCard';
 
 import Tilt from 'react-tilt';
 
@@ -121,9 +121,10 @@ const deckbuilder = ({ queriedCards }) => {
                                         <div key={card._id} ref={lastCardRef}><Card card={card} {...card} addCard={() => addCard(card)} /></div> :
                                         <Card key={card._id} card={card} {...card} addCard={() => addCard(card)} />
                                 )}
+                                {loading && [...Array(8).keys()].map(k => <LoadingCard key={"loading-card" + k} />)}
                             </div>
                             {cards.length === 0 && !loading && <div className="no-cards">無相關卡片</div>}
-                            {loading && <LoadingIcon />}
+
                         </div>
                     </div>
                 </section>
