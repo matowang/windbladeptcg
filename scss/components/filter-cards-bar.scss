@@ -20,16 +20,20 @@
         margin: 0;
     }
     .search-bar-container {
+        border-radius: 1em;
+        margin-bottom: 1em;
+        background-color: colors.$light-bg;
+        padding: 5px;
+        display: flex;
+        flex-direction: row;
+        height: 100%;
         input {
-            border-radius: 1em;
             outline: none;
             width: 100%;
-            margin-bottom: 1em;
-            background-color: colors.$light-bg;
             border: none;
-            padding: 5px;
             box-sizing: border-box;
             color: hsl(0, 0%, 100%);
+            background: inherit;
             &::placeholder {
                 color: hsla(0, 0%, 100%, 0.6);
                 font-size: .8em;

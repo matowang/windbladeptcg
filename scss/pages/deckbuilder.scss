@@ -2,13 +2,14 @@
 
 @use '../colors';
 
-$deck-width: 170px;
+$deck-width: 210px;
 
 .deckbuilder {
     max-width: 1300px;
     margin: 0 auto;
     height: calc(100vh - #{header.$height});
-    padding: 0 2em;
+    padding: 0 1em;
+    font-size: .9rem;
     &__deck-section {
         padding: 1em;
         position: fixed;
@@ -172,6 +173,9 @@ $deck-width: 170px;
 
 @media screen and (min-width:480px) { 
     $deck-width: 250px;
+    .deckbuilder {
+        font-size: 1rem;
+    }
     .deckbuilder__deck-section {
         width: $deck-width;
     }

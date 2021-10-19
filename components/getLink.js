@@ -4,6 +4,7 @@ import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
 import Tooltip from './tooltip';
+import MaterialUIDarkTheme from '../components/providers/materialUIDarkTheme';
 
 const GetLink = ({ link }) => {
     const [open, setOpen] = useState(false);
@@ -28,11 +29,13 @@ const GetLink = ({ link }) => {
                     <img src="images/icons/share.svg" alt="share" />
                 </button>
             </Tooltip>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                <Alert onClose={handleClose} type="dark" severity="success" sx={{ width: '100%' }}>
-                    成功複製鏈接您的排庫網址
-                </Alert>
-            </Snackbar>
+            <MaterialUIDarkTheme>
+                <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+                    <Alert onClose={handleClose} type="dark" severity="success" sx={{ width: '100%' }}>
+                        成功複製鏈接您的排庫網址
+                    </Alert>
+                </Snackbar>
+            </MaterialUIDarkTheme>
         </div>
     )
 }
