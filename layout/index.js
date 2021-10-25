@@ -6,7 +6,7 @@ import Footer from './footer';
 
 import MaterialUIDarkTheme from '../components/providers/materialUIDarkTheme';
 
-const Layout = ({ children, headerSpace }) =>
+const Layout = ({ children, headerSpace, transparentAtTop }) =>
     <MaterialUIDarkTheme >
         <Head>
             <title>風刃</title>
@@ -15,7 +15,7 @@ const Layout = ({ children, headerSpace }) =>
             <link rel="manifest" href="/site.webmanifest" />
         </Head>
 
-        <Header headerSpace={headerSpace} />
+        <Header headerSpace={headerSpace} transparentAtTop={transparentAtTop} />
 
         {children}
         <Footer />

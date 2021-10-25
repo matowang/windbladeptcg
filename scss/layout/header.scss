@@ -3,7 +3,7 @@
 $height: 70px;
 
 .header {
-    background: colors.$main;
+    background-color: colors.$main;
     height: $height;
     width: 100%;
     position: fixed;
@@ -12,6 +12,10 @@ $height: 70px;
     left: 0;
     display: flex;
     justify-content: flex-start;
+    transition: background-color .2s;
+    &--tranparent-at-top {
+        background-color: rgba(0, 0, 0, 0);
+    }
 }
 
 #header-space {
