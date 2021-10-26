@@ -52,8 +52,19 @@
     padding: 6rem 10%;
     max-width: 1400px;
     margin: auto;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+        "10-9-2021-update" 
+        "10-8-2021-update"
+        "deck-tutorial";
     @media only screen and (min-width: 600px) {
         grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "10-9-2021-update 10-8-2021-update"
+        "deck-tutorial deck-tutorial";
     }
 }
 
+.deck-tutorial-card-container {
+    grid-area: deck-tutorial;
+}

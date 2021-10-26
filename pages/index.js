@@ -1,6 +1,7 @@
 import Layout from '../layout';
 
 import InfoCard from '../components/info-card';
+import LargeInfoCard from '../components/large-info-card';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
 export default function Home() {
@@ -34,6 +35,15 @@ export default function Home() {
           <p>劍盾3價目表，目前只有官方公布的卡片，會慢慢更新。</p>
           <p>僅供參考，要是有誤歡迎修正</p>
         </InfoCard>
+        <div className="deck-tutorial-card-container">
+          <InfoCard variant="large" button={{
+            link: "https://www.facebook.com/windbladeptcg/photos/a.103679938128010/114170003745670/",
+            text: <>前往 < FacebookIcon /></>
+          }}
+            title="劍盾2環境的牌組" imgSrc="/images/bug-cards.jpg">
+            <p>哈嘍大家好我今天要來跟各位分享一下劍盾2環境的牌組解說了~今天要講的牌組是：泡沫栗鼠噴牌！</p>
+          </InfoCard>
+        </div>
       </main>
     </Layout>
   )

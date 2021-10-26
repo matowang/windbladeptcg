@@ -31,3 +31,22 @@
         margin-top: 2em;
     }
 }
+
+.info-card--large {
+    @media only screen and (min-width: 600px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 2em;
+        background-color: colors.$light-bg;
+        padding: 4em;
+        border-radius: 2em;
+        .info-card {
+            &__img {
+                width: 100%;
+                border-radius: 2em;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}

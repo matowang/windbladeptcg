@@ -1,7 +1,7 @@
 import Button from '@mui/material/Button';
 
-const InfoCard = ({ imgSrc, title, children, button }) => (
-    <article className="info-card" >
+const InfoCard = ({ imgSrc, title, children, button, variant }) => (
+    <article className={"info-card " + (variant === "large" ? "info-card--large" : "")} >
         <img className="info-card__img" src={imgSrc} alt={title} />
         <div className="info-card__content">
             <div className="info-card__text">
