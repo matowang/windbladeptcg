@@ -46,9 +46,14 @@
     
 }
 
-.main {
-    display: flex;
-    height: 100vh;
-    min-height: 400px;
+.main--index {
+    display: grid;
+    grid-gap: 3rem;
+    padding: 6rem 10%;
+    max-width: 1400px;
+    margin: auto;
+    @media only screen and (min-width: 600px) {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 

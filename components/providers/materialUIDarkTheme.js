@@ -4,6 +4,9 @@ const theme = createTheme({
     palette: {
         mode: 'dark',
     },
+    typography: {
+        fontFamily: ['"Roboto Mono"', '"cwTeXKai"', 'serif'].join(',')
+    }
 });
 
 const MaterialUIDarkTheme = ({ children }) => (

@@ -12,21 +12,32 @@
 @use 'components/card-search';
 @use 'components/tooltip';
 @use 'components/loading-icon';
+@use 'components/info-card';
 
 @use './fonts.scss';
 
 html {
     background: linear-gradient(0deg, rgba(7,39,85,1) 0%, rgba(5,21,43,1) 100%);
+    background-attachment: fixed;
 }
 
 body {
     overflow-y: scroll;
     color: white;
-    background-attachment: fixed;
     font-family: 'Roboto Mono', 'cwTeXKai', serif;
     background: linear-gradient(0deg, rgba(7,39,85,1) 0%, rgba(5,21,43,1) 100%);
+    background-attachment: fixed;
 }
 
 .dangerous-text {
     color: colors.$dangerous;
+}
+
+.white-button {
+    font-size: 1em;
+    background: rgba(255, 255, 255, 0.75);
+    font-weight: bold;
+    &:hover {
+        background: rgba(255, 255, 255, 1);
+    }
 }

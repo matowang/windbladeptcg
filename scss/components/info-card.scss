@@ -1,0 +1,33 @@
+@use '../colors.scss';
+
+
+.info-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 2em;
+    background: colors.$light-bg;
+    height: auto;
+    vertical-align: middle;
+    box-shadow: 0px 3px 6px 5px rgba(0, 0, 0, 0.096);
+    &__content {
+        padding: 10%;
+        height: 100%;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        justify-items: flex-start;
+    }
+    &__title{
+        font-size: 1.5em;
+    }
+    &__img{
+        width: 100%;
+        border-radius: 2em 2em 0 0;
+    }
+    &__description {
+        opacity: .66;
+        font-family: 'Roboto', sans-serif;
+    }
+    &__button {
+        margin-top: 2em;
+    }
+}
