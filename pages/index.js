@@ -1,7 +1,6 @@
 import Layout from '../layout';
 
 import InfoCard from '../components/info-card';
-import LargeInfoCard from '../components/large-info-card';
 import FacebookIcon from '@mui/icons-material/Facebook';
 
 export default function Home() {

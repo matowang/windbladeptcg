@@ -13,7 +13,6 @@
 @use 'components/tooltip';
 @use 'components/loading-icon';
 @use 'components/info-card';
-@use 'components/large-info-card';
 
 @use './fonts.scss';
 
@@ -36,9 +35,9 @@ body {
 
 .white-button {
     font-size: 1em;
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.75) !important;
     font-weight: bold;
     &:hover {
-        background: rgba(255, 255, 255, 1);
+        background: rgba(255, 255, 255, 1) !important;
     }
 }
