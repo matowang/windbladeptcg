@@ -7,7 +7,6 @@ export default function Home() {
   return (
     <Layout headerSpace={false} transparentAtTop>
       <div className="hero-container">
-        <img className="hero__bg" src="/images/hero-bg.jpg" alt="players playing pokemon cards" />
         <header id="hero" className="hero">
           <div className="hero__text">
             <p className="hero__text__big">A platform for Pokémon Card Traders and Buyers in Taiwan</p>

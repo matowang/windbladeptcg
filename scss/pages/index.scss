@@ -2,16 +2,19 @@
     display: grid;
     
     grid-template-areas: 
-        "logo"
-        "text";
+    "text"    
+    "logo";
     align-items: center;
     justify-items: center;
     position: relative;
     width: 100%;
+    height: auto;
     max-width: 1000;
-    height: 100vh;
+    min-height: 500px;
     padding: 10%;
     font-family: 'Roboto', sans-serif;
+    background: no-repeat center url(/images/hero-bg.jpg);
+    background-size: cover;
     @media only screen and (min-width: 600px) {
         font-size: 1.2rem;
         grid-template-areas: "text logo";
@@ -21,14 +24,6 @@
     @media only screen and (min-width: 1000px) {
         font-size: 1.4rem;
         grid-gap: 30%;
-    }
-    &__bg {
-        position: absolute;
-        z-index: 0;
-        opacity: .58;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
     }
     &__text {
         grid-area: text;
@@ -41,7 +36,7 @@
     }
     &__logo {
         grid-area: logo;
-        width: 50%;
+        width: 100%;
     }
     
 }
