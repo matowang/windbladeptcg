@@ -9,8 +9,8 @@ export default function Home() {
       <div className="hero-container">
         <header id="hero" className="hero">
           <div className="hero__text">
-            <p className="hero__text__big">A platform for Pokémon Card Traders and Buyers in Taiwan</p>
-            <p className="hero__text__small">Welcome to 風刀 where standard Pokémon Card prices are updated and maintained.</p>
+            <p className="hero__text__big">歡迎來到風刃寶可夢價格資訊站</p>
+            <p className="hero__text__small">一個可以讓繁中版寶可夢玩家查卡價，組牌，獲得最新資訊的平台</p>
           </div>
           <object className="hero__logo" type="image/svg+xml" data="/katana-wind-logo-no-bg-animated.svg" alt="logo" />
         </header>
