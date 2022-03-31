@@ -3,5 +3,6 @@ WindBlade is a platform for Pokémon card traders and buyers in Taiwan. Our goal
 ## Run
 `
 npm i
+
 npm run dev
 `
